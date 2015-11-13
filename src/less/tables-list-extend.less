@@ -1,0 +1,31 @@
+/******************************************************************************************
+
+Tables list extention - specific styles overrides
+
+******************************************************************************************/
+#content ng-view > div.labour-cost {
+    padding-bottom: 0;
+}
+
+div.list-table {
+    border-bottom: 0;
+
+    & > div {
+        border-top: 0;
+    }
+
+    .header-row {
+        background-color: @paper-background-color;
+        padding-left: 0;
+        padding-right: 0;
+
+        a > .fa {
+            color: @dark-red-color;
+        }
+    }
+
+    .first-row, .body-row, .total-row {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}

@@ -1,0 +1,25 @@
+<div ng-controller="ctrlLabourCost" class='labour-cost'>
+	<h2>Labour cost report</h2>
+	<div class="list-table">
+		<!-- header	-->
+		<div class="header-row multi-line">
+			<div ng-repeat='col in table.columns' ng-if='col.label' ng-class='[col.class, {"selected": table.isAsc($index) || table.isDesc($index)}]'>
+				<a ng-click="table.sort($index)">
+					{{col.label}}
+					<span ng-show="table.isAsc($index)" class="fa fa-caret-down"></span>
+					<span ng-show="table.isDesc($index)" class="fa fa-caret-up"></span>
+				</a>
+			</div>
+		</div>
+		<!-- body & footer -->
+		<div ng-class='{"total-row": $last, "body-row": (!$last && !table.isSortedByProviderName()) || ($middle && table.isSortedByProviderName()), "first-row": $first && table.isSortedByProviderName()}' ng-repeat='row in table.body | orderBy:table.compare:table.sortReverse'>
+			<div ng-class='[table.columns[0].class, {"uppercase": $last, "figures": $last, "selected": (table.isAsc(0) || table.isDesc(0)) && !$last}]' class="bold">{{row.providerName}}</div>
+			<div ng-class='[table.columns[1].class, {"selected": (table.isAsc(1) || table.isDesc(1)) && !$last}]' class='biggest'>{{row.worker}}</div>
+			<div ng-class='[table.columns[2].class, {"selected": (table.isAsc(2) || table.isDesc(2)) && !$last}]' class='bold divider'>{{row.complianceScore | percentage}}</div>
+			<div ng-class='[table.columns[3].class, {"selected": (table.isAsc(3) || table.isDesc(3)) && !$last}]' class='biggest'>{{row.grossPay / 100 | currency:"":0}}</div>
+			<div ng-class='[table.columns[4].class, {"selected": (table.isAsc(4) || table.isDesc(4)) && !$last}]' class=''>{{row.payrollAdmin ? (row.payrollAdmin / 100 | currency:"":0) : '-'}}</div>
+			<div ng-class='[table.columns[5].class, {"selected": (table.isAsc(5) || table.isDesc(5)) && !$last}]' class='biggest divider'>{{row.labourCost / 100 | currency:"":0}}</div>
+			<div ng-class='[table.columns[6].class, {"selected": (table.isAsc(6) || table.isDesc(6)) && !$last}]' class='bold'>{{row.workForce * 100 | percentage:1}}</div>
+		</div>
+	</div>
+</div>
