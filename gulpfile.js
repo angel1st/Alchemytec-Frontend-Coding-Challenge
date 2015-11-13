@@ -41,9 +41,7 @@ var paths = {
 	static: {
 		source: "./src/",
 		target: config.target + "/",
-		targethtml: config.htmltarget + "/",
-		remoteTarget: config.remoteTarget + "/",
-		remoteHtmlTarget: config.remoteHtmlTarget + "/"
+		targethtml: config.htmltarget + "/"
 	},
 	build: {
 		source: "./build/source/",
